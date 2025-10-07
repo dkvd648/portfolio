@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dhanush Dabbiru · Portfolio</title>
+  <meta name="description" content="Portfolio and resume of Dhanush Dabbiru — AI/ML Engineer. Resi video samples included." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0a0a; --panel:#111; --muted:#bfbfbf; --line:#222; --text:#f5f5f5; --soft:#d9d9d9; --white:#fff;
+      --r:16px; --r-lg:22px; --shadow:0 30px 60px -20px rgba(0,0,0,.7);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--white)}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:600}
+    .brand img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+    .links{display:flex;gap:6px;align-items:center}
+    .links a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:12px}
+    .links a:hover,.links a.active{background:#1a1a1a}
+    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:1px solid var(--line);padding:10px 14px;background:#121212;color:#fff;text-decoration:none}
+    .btn.primary{background:#fff;color:#000;border-color:#fff}
+
+    /* Sections */
+    section{scroll-margin-top:96px;padding:72px 0}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+    /* Panels & Cards */
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow)}
+    .card{position:relative;border:1px solid var(--line);background:#0f0f0f;border-radius:var(--r);padding:18px;transition:transform .3s ease, border-color .3s ease}
+    .card:hover{transform:translateY(-4px);border-color:#2a2a2a}
+
+    /* Grid */
+    .grid{display:grid;gap:16px}
+    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    /* Hero */
+    .hero h1{font-size:clamp(32px,6vw,56px);line-height:1.1;margin:.2em 0 .4em;color:#fff}
+    .sub{color:var(--muted)}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#121212;padding:8px 12px;border-radius:999px;font-size:.9rem;color:#fff}
+    .portrait{width:100%;max-width:420px;aspect-ratio:1/1;border-radius:24px;object-fit:cover;border:1px solid var(--line)}
+
+    /* Text */
+    h1,h2,h3{margin:0 0 10px 0}
+    h2{font-size:1.6rem}
+    .muted{color:var(--muted)}
+    .list{margin:10px 0 0 0;padding-left:18px;color:#fff}
+
+    /* Video gallery */
+    .video-grid{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+    .video-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0f0f0f}
+    video{display:block;width:100%;height:auto;background:#000}
+    .video-meta{padding:12px 14px;color:var(--soft);font-size:.95rem;display:flex;justify-content:space-between;align-items:center}
+
+    /* Resume */
+    .resume{background:#0c0c0c;border:1px solid var(--line);border-radius:22px;padding:28px}
+    .resume h3{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+    .resume .row{display:grid;grid-template-columns:180px 1fr;gap:16px}
+    .resume .item{margin:10px 0}
+    .pill{display:inline-block;border:1px solid var(--line);padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;color:#fff}
+    .print-actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0}
+    @media (max-width:900px){.two{grid-template-columns:1fr}.three{grid-template-columns:1fr}.video-grid{grid-template-columns:1fr}.resume .row{grid-template-columns:1fr}}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line);padding:28px 0;color:#cfcfcf}
+
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    .floaty{animation:floaty 6s ease-in-out infinite}
+
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}.floaty{animation:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="brand" href="#home" aria-label="Go to top">
+        <img src="me.jpg" alt="Portrait of Dhanush" />
+        <span>Dhanush Dabbiru</span>
+      </a>
+      <div class="links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+
+        <a href="#projects">Projects</a>
+        <a href="#demos">Resi Samples</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <a class="btn primary" href="My Resume.pdf" target="_blank" rel="noopener">Resume PDF</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container grid two" style="gap:24px;align-items:center;padding-top:24px">
+        <div>
+          <p class="muted" style="font-weight:600">Artificial Intelligence Engineer · ML Engineer</p>
+          <h1>Building reliable AI systems that ship</h1>
+          <p class="sub">Master’s in CS @ George Mason University (GPA 3.47). I design end‑to‑end AI products: VLMs, RAG at scale, real‑time inference, and voice interfaces — with a focus on latency, accuracy, and UX polish.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+            <a class="btn primary" href="#contact">Contact me</a>
+            <a class="btn" href="https://github.com/dkvd" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/dkvd/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <div class="badges" aria-label="Key skills">
+            <span class="badge">LLaMA · Gemma · Qwen</span>
+            <span class="badge">PyTorch · LangChain</span>
+            <span class="badge">AWS · Azure</span>
+            <span class="badge">RAG · VLM · TTS/STT</span>
+          </div>
+        </div>
+        <div class="floaty">
+          <div class="panel reveal">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="width:36px;height:36px;border-radius:10px;background:#fff;color:#000;display:grid;place-items:center;font-weight:700">↗</div>
+              <div>
+                <div style="font-weight:600">Recently shipped</div>
+                <div class="muted">Resi VLM alerts · Kairos voice assistant</div>
+              </div>
+            </div>
+            <hr style="border:none;border-top:1px solid var(--line);margin:16px 0"/>
+            <ul class="list">
+              <li>1M+ docs RAG · <strong>&lt;200ms</strong> latency</li>
+              <li>VLM accuracy <strong>+25%</strong> · Hallucinations <strong>-30%</strong></li>
+              <li>Pilot engagement <strong>+40%</strong> with Kokoro TTS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="reveal">About</h2>
+        <div class="grid two" style="margin-top:16px">
+          <div class="card reveal">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div style="width:40px;height:40px;border-radius:12px;background:#171717;display:grid;place-items:center;color:#fff">🎓</div>
+              <div>
+                <div style="font-weight:600">George Mason University — M.S. Computer Science</div>
+                <div class="muted">Aug 2023 — May 2025 · GPA 3.47/4.00 · Concentration: Machine Learning</div>
+              </div>
+            </div>
+          </div>
+          <div class="card reveal">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div style="width:40px;height:40px;border-radius:12px;background:#171717;display:grid;place-items:center;color:#fff">🎓</div>
+              <div>
+                <div style="font-weight:600">GITAM University — B.S. Computer Science</div>
+                <div class="muted">Jun 2019 — Apr 2023 · CGPA 8.44/10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="reveal">Skills</h2>
+        <div class="grid two" style="margin-top:16px">
+          <div class="card reveal"><h3>Languages</h3><div class="muted">Python, Java, C++, C</div></div>
+          <div class="card reveal"><h3>AI/ML</h3><div class="muted">PyTorch, HuggingFace, LangChain, Ollama, FAISS, EasyOCR</div></div>
+          <div class="card reveal"><h3>LLM</h3><div class="muted">LLaMA (3.2, 4), Gemma, Qwen, GPT‑4, RAG, Prompt Engineering</div></div>
+          <div class="card reveal"><h3>Frameworks</h3><div class="muted">Flask, Flutter, Unity, Unreal Engine</div></div>
+          <div class="card reveal"><h3>Front‑End</h3><div class="muted">HTML, CSS, JavaScript, Dart</div></div>
+          <div class="card reveal"><h3>Cloud</h3><div class="muted">AWS (EC2, S3, Lambda, Bedrock, SageMaker), Azure</div></div>
+          <div class="card reveal"><h3>Tools</h3><div class="muted">Git, Docker, Arduino IDE, Android Studio</div></div>
+          <div class="card reveal"><h3>Hardware</h3><div class="muted">Raspberry Pi, NodeMCU, Arduino</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="reveal">Projects</h2>
+        <div class="grid three" style="margin-top:16px">
+          <div class="card reveal">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+              <div>
+                <h3>Smart Home Lighting Automation</h3>
+                <div class="muted">Feb — Mar 2025</div>
+              </div>
+
+            </div>
+            <p class="muted">Agentic n8n workflow with ChatGPT to control Philips Hue; automated 100% of requests &lt; 1s latency.</p>
+            <div class="badges"><span class="badge">n8n</span><span class="badge">ChatGPT</span><span class="badge">Philips Hue API</span></div>
+          </div>
+          <div class="card reveal">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+              <div>
+                <h3>Personal Finance Assistant</h3>
+                <div class="muted">Apr — May 2025</div>
+              </div>
+
+            </div>
+            <p class="muted">Agent on Ollama Gemma3:4B (4‑bit) for categorization, anomaly detection & insights; 95% accuracy.</p>
+            <div class="badges"><span class="badge">Ollama</span><span class="badge">Python</span><span class="badge">Google Sheets API</span></div>
+          </div>
+          <div class="card reveal">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+              <div>
+                <h3>Email Triage Assistant</h3>
+                <div class="muted">Feb — Mar 2025</div>
+              </div>
+
+            </div>
+            <p class="muted">HF + Qwen3:4B to prioritize, draft replies & auto‑organize; cut handling time by 70%.</p>
+            <div class="badges"><span class="badge">HuggingFace</span><span class="badge">Qwen3:4B</span><span class="badge">Gmail API</span><span class="badge">Python</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resi Video Samples -->
+    <section id="demos">
+      <div class="container">
+        <h2 class="reveal">Resi Samples</h2>
+
+        <div class="video-grid" style="margin-top:16px">
+          <div class="video-card reveal">
+            <video controls preload="metadata" src="sample-1.mp4"></video>
+            <div class="video-meta"><span>sample-1.mp4</span><a class="btn" href="sample-1.mp4" download>Download</a></div>
+          </div>
+          <div class="video-card reveal">
+            <video controls preload="metadata" src="sample-2.mp4"></video>
+            <div class="video-meta"><span>sample-2.mp4</span><a class="btn" href="sample-2.mp4" download>Download</a></div>
+          </div>
+          <div class="video-card reveal">
+            <video controls preload="metadata" src="sample-3.mp4"></video>
+            <div class="video-meta"><span>sample-3.mp4</span><a class="btn" href="sample-3.mp4" download>Download</a></div>
+          </div>
+          <div class="video-card reveal">
+            <video controls preload="metadata" src="sample-4.mp4"></video>
+            <div class="video-meta"><span>sample-4.mp4</span><a class="btn" href="sample-4.mp4" download>Download</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+      <div class="container">
+        <h2 class="reveal">Achievements</h2>
+        <div class="grid three" style="margin-top:16px">
+          <a class="card reveal" href="https://learn.microsoft.com/en-in/users/kasiviswanadhdhanushdabbiru-3965/credentials/184a0375f5b493f6?ref=https%3A%2F%2Fbit.ly%2F4dh3APP" target="_blank" rel="noopener"><strong>Azure AI‑900</strong></a>
+          <a class="card reveal" href="https://www.credly.com/badges/5cfcfb20-24ce-49c8-8b9b-c0b08524aa53/public_url" target="_blank" rel="noopener"><strong>AWS CLF‑C02</strong></a>
+          <a class="card reveal" href="https://www.credly.com/badges/1a747770-697a-42f7-af5d-39d3bb3c0480/public_url" target="_blank" rel="noopener"><strong>AWS AIF‑C02</strong></a>
+          <a class="card reveal" href="https://leetcode.com/dkvd/" target="_blank" rel="noopener"><strong>100+ LeetCode (Top 20%)</strong></a>
+          <a class="card reveal" href="https://ieeexplore.ieee.org/document/10760944" target="_blank" rel="noopener"><strong>IEEE Publication</strong></a>
+          <a class="card reveal" href="https://link.springer.com/chapter/10.1007/978-3-031-51167-7_62" target="_blank" rel="noopener"><strong>Springer Publication</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Resume (HTML) -->
+    <section id="resume">
+      <div class="container">
+        <h2 class="reveal">Resume</h2>
+        <div class="resume reveal" aria-label="Printable resume">
+          <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div>
+              <h1 style="margin:0 0 6px 0;font-size:1.8rem">Dhanush Viswanath Dabbiru</h1>
+              <div class="muted">AI/ML Engineer • Fairfax, VA</div>
+            </div>
+            <div style="text-align:right">
+              <div><a href="mailto:kasiviswanadhdhanushdabbiru@gmail.com">kasiviswanadhdhanushdabbiru@gmail.com</a></div>
+              <div><a href="tel:+17036263800">+1 (703) 626‑3800</a></div>
+              <div><a href="https://www.linkedin.com/in/dkvd/" target="_blank" rel="noopener">linkedin.com/in/dkvd</a> · <a href="https://github.com/dkvd" target="_blank" rel="noopener">github.com/dkvd</a></div>
+            </div>
+          </div>
+
+          <h3>Summary</h3>
+          <p class="muted">AI/ML engineer with hands‑on experience shipping end‑to‑end systems: vision‑language models (VLMs), scalable RAG, real‑time inference, and voice interfaces. Focused on latency, reliability, and measurable impact.</p>
+
+          <h3>Experience</h3>
+          <div class="item">
+            <div class="row">
+              <strong>Artificial Intelligence Engineer</strong>
+              <div>
+                <div><em>Areaprobe (Resident's View · Resi) — Washington, DC</em> · Sept 2024 — Present</div>
+                <ul class="list">
+                  <li>Designed & deployed Resi with LLaMA3.2‑Vision:11B for contextual scene descriptions & 24/7 alerts.</li>
+                  <li>Integrated Kokoro TTS; improved pilot engagement by 40%.</li>
+                  <li>Benchmarked VLMs (LLaMA4:16x17B, Gemma3:12B, OpenAI); +25% description accuracy.</li>
+                  <li>Built scalable RAG (FAISS + all‑MiniLM‑L6‑v2) over 1M+ docs with sub‑200ms retrieval latency.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <strong>AI Foundational Engineer — Kairos Project</strong>
+              <div>
+                <div><em>Kairos (Remote)</em> · Jun 2025 — Present</div>
+                <ul class="list">
+                  <li>Built hands‑free assistant integrating LLaMA4:Scout, VOSK STT, and Chatterbox TTS.</li>
+                  <li>Delivered custom zero‑shot voices; improved realism & engagement.</li>
+                  <li>Designed modular Flask deployment enabling rapid third‑party API integration.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3>Education</h3>
+          <div class="item">
+            <div class="row">
+              <strong>George Mason University</strong>
+              <div>M.S. in Computer Science, Aug 2023 — May 2025 · GPA 3.47/4.00 · Concentration: Machine Learning</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <strong>GITAM University</strong>
+              <div>B.S. in Computer Science, Jun 2019 — Apr 2023 · CGPA 8.44/10</div>
+            </div>
+          </div>
+
+          <h3>Skills</h3>
+          <div class="item">
+            <div class="row">
+              <strong>Languages</strong>
+              <div>Python, Java, C++, C</div>
+            </div>
+            <div class="row">
+              <strong>AI/ML</strong>
+              <div>PyTorch, HuggingFace, LangChain, Ollama, FAISS, EasyOCR</div>
+            </div>
+            <div class="row">
+              <strong>LLM</strong>
+              <div>LLaMA (3.2, 4), Gemma, Qwen, GPT‑4, RAG, Prompt Engineering</div>
+            </div>
+            <div class="row">
+              <strong>Frameworks</strong>
+              <div>Flask, Flutter, Unity, Unreal Engine</div>
+            </div>
+            <div class="row">
+              <strong>Cloud</strong>
+              <div>AWS (EC2, S3, Lambda, Bedrock, SageMaker), Azure</div>
+            </div>
+            <div class="row">
+              <strong>Tools</strong>
+              <div>Git, Docker, Arduino IDE, Android Studio</div>
+            </div>
+            <div class="row">
+              <strong>Hardware</strong>
+              <div>Raspberry Pi, NodeMCU, Arduino</div>
+            </div>
+          </div>
+
+          <h3>Projects</h3>
+          <div class="item">
+            <div class="row">
+              <strong>Smart Home Lighting Automation</strong>
+              <div>Agentic n8n workflow with ChatGPT to control Philips Hue; automated 100% of requests &lt; 1s latency. <a href="https://bit.ly/4dh3APP" target="_blank" rel="noopener">Link</a></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <strong>Personal Finance Assistant</strong>
+              <div>Agent on Ollama Gemma3:4B (4‑bit) for categorization, anomaly detection & insights; 95% accuracy. <a href="https://bit.ly/4dh3APP" target="_blank" rel="noopener">Link</a></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <strong>Email Triage Assistant</strong>
+              <div>HF + Qwen3:4B to prioritize, draft replies & auto‑organize; cut handling time by 70%. <a href="https://bit.ly/4dh3APP" target="_blank" rel="noopener">Link</a></div>
+            </div>
+          </div>
+
+          <h3>Certifications & Publications</h3>
+          <div class="item">
+            <div class="row">
+              <strong>Certifications</strong>
+              <div><a href="https://www.credly.com/badges/5cfcfb20-24ce-49c8-8b9b-c0b08524aa53/public_url" target="_blank" rel="noopener">Azure AI‑900</a>; <a href="https://www.credly.com/badges/1a747770-697a-42f7-af5d-39d3bb3c0480/public_url" target="_blank" rel="noopener">AWS CLF‑C02</a>; <a href="https://www.credly.com/badges/1a747770-697a-42f7-af5d-39d3bb3c0480/public_url" target="_blank" rel="noopener">AWS AIF‑C02</a></div>
+            </div>
+            <div class="row">
+              <strong>Publications</strong>
+              <div><a href="https://ieeexplore.ieee.org/document/10760944" target="_blank" rel="noopener">IEEE</a>; <a href="https://link.springer.com/chapter/10.1007/978-3-031-51167-7_62" target="_blank" rel="noopener">Springer</a></div>
+            </div>
+          </div>
+
+          <div class="print-actions">
+            <a class="btn" href="My Resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+            <button class="btn" onclick="window.print()">Print this resume</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="reveal">Contact</h2>
+        <div class="grid three" style="margin-top:16px">
+          <div class="card reveal"><strong>Email</strong><div><a href="mailto:kasiviswanadhdhanushdabbiru@gmail.com" class="muted">kasiviswanadhdhanushdabbiru@gmail.com</a></div></div>
+          <div class="card reveal"><strong>Phone</strong><div><a href="tel:+17036263800" class="muted">+1 (703) 626‑3800</a></div></div>
+          <div class="card reveal"><strong>Location</strong><div class="muted">Fairfax, VA</div></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <a class="btn" href="https://www.linkedin.com/in/dkvd/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/dkvd" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn primary" href="My Resume.pdf" target="_blank" rel="noopener">View Resume PDF</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div>© <span id="year"></span> Dhanush Dabbiru — All rights reserved.</div>
+      <div style="display:flex;gap:14px">
+        <a class="muted" href="#about">About</a>
+        <a class="muted" href="#projects">Projects</a>
+        <a class="muted" href="#demos">Resi Samples</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // active link state on scroll
+    const sections = [...document.querySelectorAll('main section')];
+    const navLinks = [...document.querySelectorAll('#nav-links a[href^="#"]')];
+    const setActive = () => {
+      const y = window.scrollY + 110; // header offset
+      let current = sections[0]?.id || 'home';
+      for(const s of sections){ if(y >= s.offsetTop) current = s.id; }
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+    };
+    window.addEventListener('scroll', setActive, { passive:true });
+    setActive();
+
+    // reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }
+    }, { threshold:.12, rootMargin:'0px 0px -80px 0px' });
+    document.querySelectorAll('.reveal, .card').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
