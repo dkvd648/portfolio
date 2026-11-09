@@ -28,90 +28,66 @@
   <style>
     :root{
       --bg:#0a0a0a; --panel:#111; --muted:#bfbfbf; --line:#222; --text:#f5f5f5; --soft:#d9d9d9; --white:#fff;
-      --r:16px; --r-lg:22px; --shadow:0 30px 60px -20px rgba(0,0,0,.7);
+      --r:12px;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:auto}
     body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
     a{color:var(--white)}
 
-    /* Header */
-    header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    header{position:sticky;top:0;z-index:50;background:#0a0a0a;border-bottom:1px solid var(--line)}
     nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:600}
     .brand img{width:36px;height:36px;border-radius:50%;object-fit:cover}
     .links{display:flex;gap:6px;align-items:center}
-    .links a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:12px}
-    .links a:hover,.links a.active{background:#1a1a1a}
-    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;border:1px solid var(--line);padding:10px 14px;background:#121212;color:#fff;text-decoration:none}
+    .links a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:8px}
+    .links a.active{background:#1a1a1a}
+    .btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;border:1px solid var(--line);padding:10px 14px;background:#121212;color:#fff;text-decoration:none}
     .btn.primary{background:#fff;color:#000;border-color:#fff}
+    button.btn{font:inherit;cursor:pointer}
 
-    /* Sections */
-    section{scroll-margin-top:96px;padding:72px 0}
+    section{scroll-margin-top:88px;padding:56px 0}
     .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-    /* Panels & Cards */
-    .panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow)}
-    .card{position:relative;border:1px solid var(--line);background:#0f0f0f;border-radius:var(--r);padding:18px;transition:transform .3s ease, border-color .3s ease}
-    .card:hover{transform:translateY(-4px);border-color:#2a2a2a}
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--r);padding:18px}
+    .card{border:1px solid var(--line);background:#0f0f0f;border-radius:var(--r);padding:18px}
+    .card-media{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center;border:1px solid var(--line);border-radius:8px;margin:0 0 14px 0;background:#111;max-width:100%}
 
-    /* Grid */
     .grid{display:grid;gap:16px}
     .two{grid-template-columns:repeat(2,minmax(0,1fr))}
     .three{grid-template-columns:repeat(3,minmax(0,1fr))}
 
-    /* Hero */
-    .hero h1{font-size:clamp(32px,6vw,56px);line-height:1.1;margin:.2em 0 .4em;color:#fff}
+    .hero h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:.2em 0 .4em;color:#fff}
     .sub{color:var(--muted)}
     .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
     .badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#121212;padding:8px 12px;border-radius:999px;font-size:.9rem;color:#fff}
-    .portrait{width:100%;max-width:420px;aspect-ratio:1/1;border-radius:24px;object-fit:cover;border:1px solid var(--line)}
 
-    /* Text */
     h1,h2,h3{margin:0 0 10px 0}
     h2{font-size:1.6rem}
     .muted{color:var(--muted)}
     .list{margin:10px 0 0 0;padding-left:18px;color:#fff}
 
-    /* Video gallery */
-    .video-grid{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
-    .video-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0f0f0f}
-    video{display:block;width:100%;height:auto;background:#000}
-    .video-meta{padding:12px 14px;color:var(--soft);font-size:.95rem;display:flex;justify-content:space-between;align-items:center}
-
-    /* Resume */
-    .resume{background:#0c0c0c;border:1px solid var(--line);border-radius:22px;padding:28px}
+    .resume{background:#0c0c0c;border:1px solid var(--line);border-radius:var(--r);padding:28px}
     .resume h3{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
     .resume .row{display:grid;grid-template-columns:180px 1fr;gap:16px}
     .resume .item{margin:10px 0}
-    .pill{display:inline-block;border:1px solid var(--line);padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;color:#fff}
     .print-actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0}
-    @media (max-width:900px){.two{grid-template-columns:1fr}.three{grid-template-columns:1fr}.video-grid{grid-template-columns:1fr}.resume .row{grid-template-columns:1fr}}
+    @media (max-width:900px){.two{grid-template-columns:1fr}.three{grid-template-columns:1fr}.resume .row{grid-template-columns:1fr}}
 
-    /* Footer */
     footer{border-top:1px solid var(--line);padding:28px 0;color:#cfcfcf}
 
-    /* Animations */
-    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
-    .reveal.show{opacity:1;transform:none}
-    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
-    .floaty{animation:floaty 6s ease-in-out infinite}
-
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}.floaty{animation:none}}
-
-    /* Mobile nav */
-    .nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#121212;color:#fff;cursor:pointer}
+    .nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:#121212;color:#fff;cursor:pointer}
     .nav-toggle:focus-visible,.links a:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
     .nav-toggle-bars{display:block;width:18px;height:2px;background:#fff;position:relative}
     .nav-toggle-bars::before,.nav-toggle-bars::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff}
     .nav-toggle-bars::before{top:-6px}
     .nav-toggle-bars::after{top:6px}
     .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-    .skip-link:focus{position:fixed;left:12px;top:12px;z-index:100;width:auto;height:auto;padding:10px 14px;background:#fff;color:#000;border-radius:10px}
+    .skip-link:focus{position:fixed;left:12px;top:12px;z-index:100;width:auto;height:auto;padding:10px 14px;background:#fff;color:#000;border-radius:8px}
     .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     @media (max-width:900px){
       .nav-toggle{display:inline-flex}
-      .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:4px;padding:12px 16px 16px;background:rgba(0,0,0,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+      .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:4px;padding:12px 16px 16px;background:#0a0a0a;border-bottom:1px solid var(--line)}
       .links.open{display:flex}
       .links a{padding:12px 14px}
       nav{position:relative}
@@ -133,7 +109,6 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#demos">Demo videos</a>
         <a href="#achievements">Achievements</a>
         <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
@@ -143,14 +118,13 @@
   </header>
 
   <main>
-    <!-- Hero -->
     <section id="home" class="hero">
       <div class="container grid two" style="gap:24px;align-items:center;padding-top:24px">
         <div>
           <p class="muted" style="font-weight:600">Senior Generative AI Engineer · LLM Orchestration · Multimodal AI · RAG · Voice AI · Computer Vision</p>
           <h1>Building reliable AI systems that ship</h1>
-          <p class="sub">Senior Generative AI Engineer at ClarityPath AI and Foundational Senior Generative AI Engineer at AreaProbe (SpeakCanary). I build production LLM tool‑calling systems, RAG and persistent memory, multimodal video AI, real‑time voice AI, and cloud‑native apps across web, iOS, Android, and Smart TV. M.S. CS (Machine Learning) @ George Mason University.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+          <p class="sub">Senior Generative AI Engineer at ClarityPath AI and Foundational Senior Generative AI Engineer at AreaProbe (SpeakCanary). I build production LLM tool-calling systems, RAG and persistent memory, multimodal video AI, real-time voice AI, and cloud-native apps across web, iOS, Android, and Smart TV. M.S. CS (Machine Learning) @ George Mason University.</p>
+          <div class="btn-row" style="margin-top:18px">
             <a class="btn primary" href="#contact">Contact me</a>
             <a class="btn" href="https://github.com/dkvd648" target="_blank" rel="noopener">GitHub</a>
             <a class="btn" href="https://www.linkedin.com/in/dkvd/" target="_blank" rel="noopener">LinkedIn</a>
@@ -162,98 +136,84 @@
             <span class="badge">YOLO · InsightFace · Deepgram</span>
           </div>
         </div>
-        <div class="floaty">
-          <div class="panel reveal">
-            <div style="display:flex;gap:12px;align-items:center">
-              <div style="width:36px;height:36px;border-radius:10px;background:#fff;color:#000;display:grid;place-items:center;font-weight:700">↗</div>
-              <div>
-                <div style="font-weight:600">Recently shipped</div>
-                <div class="muted">SpeakCanary video intelligence · Clarity Sidekick</div>
-              </div>
-            </div>
+        <div>
+          <div class="panel">
+            <div style="font-weight:600">Recently shipped</div>
+            <div class="muted">SpeakCanary video intelligence · Clarity Sidekick</div>
             <hr style="border:none;border-top:1px solid var(--line);margin:16px 0"/>
             <ul class="list">
               <li><strong>8–12</strong> concurrent camera streams · alerts in <strong>~2–3 s</strong></li>
               <li>Multimodal RAG over <strong>10K+</strong> frames · retrieval <strong>&lt;1 s</strong></li>
-              <li>Voice AI · <strong>~1.5–2.5 s</strong> end‑to‑end response latency</li>
+              <li>Voice AI · <strong>~1.5–2.5 s</strong> end-to-end response latency</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- About -->
     <section id="about">
       <div class="container">
-        <h2 class="reveal">About</h2>
+        <h2>About</h2>
         <div class="grid two" style="margin-top:16px">
-          <div class="card reveal">
-            <div style="display:flex;gap:12px;align-items:flex-start">
-              <div style="width:40px;height:40px;border-radius:12px;background:#171717;display:grid;place-items:center;color:#fff">🎓</div>
-              <div>
-                <div style="font-weight:600">George Mason University — M.S. Computer Science</div>
-                <div class="muted">Aug 2023 — May 2025 · GPA 3.47/4.00 · Concentration: Machine Learning</div>
-              </div>
-            </div>
+          <div class="card">
+            <div style="font-weight:600">George Mason University — M.S. Computer Science</div>
+            <div class="muted">Aug 2023 — May 2025 · GPA 3.47/4.00 · Concentration: Machine Learning</div>
           </div>
-          <div class="card reveal">
-            <div style="display:flex;gap:12px;align-items:flex-start">
-              <div style="width:40px;height:40px;border-radius:12px;background:#171717;display:grid;place-items:center;color:#fff">🎓</div>
-              <div>
-                <div style="font-weight:600">GITAM University — B.S. Computer Science</div>
-                <div class="muted">Jun 2019 — Apr 2023 · CGPA 8.44/10</div>
-              </div>
-            </div>
+          <div class="card">
+            <div style="font-weight:600">GITAM University — B.S. Computer Science</div>
+            <div class="muted">Jun 2019 — Apr 2023 · CGPA 8.44/10</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
     <section id="skills">
       <div class="container">
-        <h2 class="reveal">Skills</h2>
+        <h2>Skills</h2>
         <div class="grid two" style="margin-top:16px">
-          <div class="card reveal"><h3>AI / LLM</h3><div class="muted">LangGraph, LangChain, OpenAI Agents SDK, AWS Bedrock, Claude, Gemini, OpenAI, LLaMA 4 Scout, Groq, Amazon Nova</div></div>
-          <div class="card reveal"><h3>RAG &amp; Data</h3><div class="muted">Pinecone, pgvector, DynamoDB, PostgreSQL, Redis, Multimodal RAG</div></div>
-          <div class="card reveal"><h3>Vision &amp; Voice</h3><div class="muted">OpenCV, Motion Detection, YOLOv12n, YOLOE, InsightFace, Deepgram Nova‑3, Cartesia Sonic‑3.5, Twilio / Telnyx</div></div>
-          <div class="card reveal"><h3>Engineering</h3><div class="muted">Python, C/C++, TypeScript, FastAPI, Flask, WebSockets, SQLAlchemy, Git / GitHub</div></div>
-          <div class="card reveal"><h3>Cloud &amp; DevOps</h3><div class="muted">AWS EC2 / ECS / ECR / S3 / Lambda, Docker, Terraform</div></div>
-          <div class="card reveal"><h3>Apps &amp; Platforms</h3><div class="muted">React, Flutter, iOS, Android, Samsung Tizen, LG webOS</div></div>
+          <div class="card"><h3>AI / LLM</h3><div class="muted">LangGraph, LangChain, OpenAI Agents SDK, AWS Bedrock, Claude, Gemini, OpenAI, LLaMA 4 Scout, Groq, Amazon Nova</div></div>
+          <div class="card"><h3>RAG &amp; Data</h3><div class="muted">Pinecone, pgvector, DynamoDB, PostgreSQL, Redis, Multimodal RAG</div></div>
+          <div class="card"><h3>Vision &amp; Voice</h3><div class="muted">OpenCV, Motion Detection, YOLOv12n, YOLOE, InsightFace, Deepgram Nova-3, Cartesia Sonic-3.5, Twilio / Telnyx</div></div>
+          <div class="card"><h3>Engineering</h3><div class="muted">Python, C/C++, TypeScript, FastAPI, Flask, WebSockets, SQLAlchemy, Git / GitHub</div></div>
+          <div class="card"><h3>Cloud &amp; DevOps</h3><div class="muted">AWS EC2 / ECS / ECR / S3 / Lambda, Docker, Terraform</div></div>
+          <div class="card"><h3>Apps &amp; Platforms</h3><div class="muted">React, Flutter, iOS, Android, Samsung Tizen, LG webOS</div></div>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
     <section id="projects">
       <div class="container">
-        <h2 class="reveal">Projects</h2>
+        <h2>Projects</h2>
         <div class="grid two" style="margin-top:16px">
-          <div class="card reveal">
+          <div class="card">
+            <img class="card-media" src="images/savoas.webp" alt="Savoas" loading="lazy" />
             <h3>Savoas — AI Voice Agent</h3>
             <div class="muted">Independent AI project</div>
-            <p class="muted">Real‑time salon voice assistant using LangGraph model/tool loops, Groq GPT‑OSS, FastAPI, Twilio/Telnyx, Pinecone, and Redis; 20+ booking and business‑action tools for service lookup, availability, appointments, calendar operations, payments, and customer Q&amp;A.</p>
+            <p class="muted">Real-time salon voice assistant using LangGraph model/tool loops, Groq GPT-OSS, FastAPI, Twilio/Telnyx, Pinecone, and Redis; 20+ booking and business-action tools for service lookup, availability, appointments, calendar operations, payments, and customer Q&amp;A.</p>
             <div class="badges"><span class="badge">LangGraph</span><span class="badge">Groq</span><span class="badge">FastAPI</span><span class="badge">Twilio / Telnyx</span><span class="badge">Pinecone</span><span class="badge">Redis</span></div>
-            <p><a class="btn" href="https://voice-agents-frontend-60vy.onrender.com/" target="_blank" rel="noopener">Visit</a></p>
+            <div class="btn-row"><a class="btn" href="https://voice-agents-frontend-60vy.onrender.com/" target="_blank" rel="noopener">Visit</a></div>
           </div>
-          <div class="card reveal">
+          <div class="card">
+            <img class="card-media" src="images/speakcanary.webp" alt="SpeakCanary" loading="lazy" />
             <h3>SpeakCanary</h3>
             <div class="muted">AreaProbe Inc.</div>
-            <p class="muted">Multimodal video‑intelligence platform processing 8–12 concurrent camera streams with near‑real‑time motion, person/custom‑object, and facial‑recognition detection, generating alerts in ~2–3 seconds; multimodal RAG over 10K+ video frames/images with retrieval under 1 second.</p>
+            <p class="muted">Multimodal video-intelligence platform processing 8–12 concurrent camera streams with near-real-time motion, person/custom-object, and facial-recognition detection, generating alerts in ~2–3 seconds; multimodal RAG over 10K+ video frames/images with retrieval under 1 second.</p>
             <div class="badges"><span class="badge">OpenCV</span><span class="badge">YOLOv12n</span><span class="badge">YOLOE</span><span class="badge">InsightFace</span><span class="badge">Amazon Nova</span><span class="badge">Pinecone</span><span class="badge">AWS Bedrock</span></div>
-            <p><a class="btn" href="https://www.speakcanary.com/" target="_blank" rel="noopener">Visit</a></p>
+            <div class="btn-row"><a class="btn" href="https://www.speakcanary.com/" target="_blank" rel="noopener">Visit</a></div>
           </div>
-          <div class="card reveal">
+          <div class="card">
+            <img class="card-media" src="images/claritysidekick.webp" alt="Clarity Sidekick" loading="lazy" />
             <h3>Clarity Sidekick</h3>
             <div class="muted">ClarityPath AI</div>
-            <p class="muted">LangGraph model/tool loops on AWS Bedrock and Gemini with parallel tool execution, streamed responses, knowledge retrieval, and memory‑aware conversations; real‑time voice with ~1.5–2.5 s end‑to‑end response latency.</p>
-            <div class="badges"><span class="badge">LangGraph</span><span class="badge">AWS Bedrock</span><span class="badge">Gemini</span><span class="badge">Deepgram Nova‑3</span><span class="badge">Cartesia Sonic‑3.5</span></div>
+            <p class="muted">LangGraph model/tool loops on AWS Bedrock and Gemini with parallel tool execution, streamed responses, knowledge retrieval, and memory-aware conversations; real-time voice with ~1.5–2.5 s end-to-end response latency.</p>
+            <div class="badges"><span class="badge">LangGraph</span><span class="badge">AWS Bedrock</span><span class="badge">Gemini</span><span class="badge">Deepgram Nova-3</span><span class="badge">Cartesia Sonic-3.5</span></div>
             <div class="btn-row">
               <a class="btn" href="https://claritysidekick.com/" target="_blank" rel="noopener">Visit site</a>
               <a class="btn" href="https://app.claritysidekick.com/" target="_blank" rel="noopener">Open app</a>
             </div>
           </div>
-          <div class="card reveal">
+          <div class="card">
+            <img class="card-media" src="images/afterbuy.webp" alt="AfterBuy" loading="lazy" />
             <h3>AfterBuy</h3>
             <div class="muted">AI receipt management</div>
             <p class="muted">Converts receipt photos into searchable purchase records and spending insights; receipt understanding and Q&amp;A with AWS Bedrock + LLaMA 4 Scout, processing 1K+ receipt images at ~90–95% extraction accuracy for common fields; Flutter app for iOS and Android.</p>
@@ -264,21 +224,24 @@
               <a class="btn" href="https://play.google.com/store/apps/details?id=com.receiptlyai.billo" target="_blank" rel="noopener">Google Play</a>
             </div>
           </div>
-          <div class="card reveal">
+          <div class="card">
+            <img class="card-media" src="images/xdial.webp" alt="xDial" loading="lazy" />
             <h3>xDial</h3>
             <div class="muted">Healthcare voice / IVR</div>
-            <p class="muted">Healthcare voice/IVR infrastructure with C, WebSockets, WebAssembly, NVIDIA Parakeet / Nemotron, Twilio, Medplum, and PostgreSQL; AWS infrastructure (EC2 GPU workers, S3, KMS, SSM, private networking, Terraform) for secure speech and call‑processing workloads.</p>
+            <p class="muted">Healthcare voice/IVR infrastructure with C, WebSockets, WebAssembly, NVIDIA Parakeet / Nemotron, Twilio, Medplum, and PostgreSQL; AWS infrastructure (EC2 GPU workers, S3, KMS, SSM, private networking, Terraform) for secure speech and call-processing workloads.</p>
             <div class="badges"><span class="badge">C</span><span class="badge">WebSockets</span><span class="badge">WebAssembly</span><span class="badge">NVIDIA Parakeet / Nemotron</span><span class="badge">Twilio</span><span class="badge">Medplum</span><span class="badge">PostgreSQL</span><span class="badge">Terraform</span></div>
             <div class="btn-row"><a class="btn" href="https://xdialai.ai/" target="_blank" rel="noopener">Visit</a></div>
           </div>
-          <div class="card reveal">
+          <div class="card">
+            <img class="card-media" src="images/quarterlife.webp" alt="Quarterlife" loading="lazy" />
             <h3>Quarterlife</h3>
-            <div class="muted">AI‑assisted financial platform</div>
-            <p class="muted">AI‑assisted financial platform with Claude, LangGraph, structured tool calls, Plaid, FastAPI, and PostgreSQL/Supabase; financial scoring and scenario‑testing engines plus React/TypeScript and Flutter iOS/Android apps, with safeguards for AI‑generated financial outputs.</p>
+            <div class="muted">AI-assisted financial platform</div>
+            <p class="muted">AI-assisted financial platform with Claude, LangGraph, structured tool calls, Plaid, FastAPI, and PostgreSQL/Supabase; financial scoring and scenario-testing engines plus React/TypeScript and Flutter iOS/Android apps, with safeguards for AI-generated financial outputs.</p>
             <div class="badges"><span class="badge">Claude</span><span class="badge">LangGraph</span><span class="badge">Plaid</span><span class="badge">FastAPI</span><span class="badge">PostgreSQL / Supabase</span><span class="badge">React</span><span class="badge">Flutter</span></div>
             <div class="btn-row"><a class="btn" href="https://www.quarterlife.io/" target="_blank" rel="noopener">Visit</a></div>
           </div>
-          <div class="card reveal">
+          <div class="card">
+            <img class="card-media" src="images/ribbon.webp" alt="Ribbon" loading="lazy" />
             <h3>Ribbon Images</h3>
             <div class="muted">AreaProbe Inc. · Ribbon AI services</div>
             <p class="muted">Ribbon AI services and Ribbon Images iOS, built alongside SpeakCanary and other AreaProbe products.</p>
@@ -292,51 +255,23 @@
       </div>
     </section>
 
-    <!-- Demo videos -->
-    <section id="demos">
-      <div class="container">
-        <h2 class="reveal">Demo videos</h2>
-        <p class="muted reveal" style="margin-top:8px">Computer‑vision / video‑AI product demos. Individual clips are labeled generically because the source files are not mapped to a specific product name in the repo.</p>
-        <div class="video-grid" style="margin-top:16px">
-          <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-1.mp4" title="Product demo 1"></video>
-            <div class="video-meta"><span>Product demo 1</span><a class="btn" href="sample-1.mp4" download>Download</a></div>
-          </div>
-          <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-2.mp4" title="Product demo 2"></video>
-            <div class="video-meta"><span>Product demo 2</span><a class="btn" href="sample-2.mp4" download>Download</a></div>
-          </div>
-          <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-3.mp4" title="Product demo 3"></video>
-            <div class="video-meta"><span>Product demo 3</span><a class="btn" href="sample-3.mp4" download>Download</a></div>
-          </div>
-          <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-4.mp4" title="Product demo 4"></video>
-            <div class="video-meta"><span>Product demo 4</span><a class="btn" href="sample-4.mp4" download>Download</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Achievements -->
     <section id="achievements">
       <div class="container">
-        <h2 class="reveal">Achievements</h2>
+        <h2>Achievements</h2>
         <div class="grid three" style="margin-top:16px">
-          <a class="card reveal" href="https://learn.microsoft.com/en-in/users/kasiviswanadhdhanushdabbiru-3965/credentials/184a0375f5b493f6" target="_blank" rel="noopener"><strong>Microsoft Azure AI‑900</strong></a>
-          <a class="card reveal" href="https://www.credly.com/badges/5cfcfb20-24ce-49c8-8b9b-c0b08524aa53/public_url" target="_blank" rel="noopener"><strong>AWS Certified Cloud Practitioner (CLF‑C02)</strong></a>
-          <a class="card reveal" href="https://www.credly.com/badges/1a747770-697a-42f7-af5d-39d3bb3c0480/public_url" target="_blank" rel="noopener"><strong>AWS Certified AI Practitioner (AIF‑C02)</strong></a>
-          <a class="card reveal" href="https://ieeexplore.ieee.org/document/10760944" target="_blank" rel="noopener"><strong>IEEE: “IoT Enabled Aqua Pond Monitoring System”</strong></a>
-          <a class="card reveal" href="https://link.springer.com/chapter/10.1007/978-3-031-51167-7_62" target="_blank" rel="noopener"><strong>Springer: “Semi‑Automated Vehicle Control Using Wi‑Fi”</strong></a>
+          <a class="card" href="https://learn.microsoft.com/en-in/users/kasiviswanadhdhanushdabbiru-3965/credentials/184a0375f5b493f6" target="_blank" rel="noopener"><strong>Microsoft Azure AI-900</strong></a>
+          <a class="card" href="https://www.credly.com/badges/5cfcfb20-24ce-49c8-8b9b-c0b08524aa53/public_url" target="_blank" rel="noopener"><strong>AWS Certified Cloud Practitioner (CLF-C02)</strong></a>
+          <a class="card" href="https://www.credly.com/badges/1a747770-697a-42f7-af5d-39d3bb3c0480/public_url" target="_blank" rel="noopener"><strong>AWS Certified AI Practitioner (AIF-C02)</strong></a>
+          <a class="card" href="https://ieeexplore.ieee.org/document/10760944" target="_blank" rel="noopener"><strong>IEEE: “IoT Enabled Aqua Pond Monitoring System”</strong></a>
+          <a class="card" href="https://link.springer.com/chapter/10.1007/978-3-031-51167-7_62" target="_blank" rel="noopener"><strong>Springer: “Semi-Automated Vehicle Control Using Wi-Fi”</strong></a>
         </div>
       </div>
     </section>
 
-    <!-- Full Resume (HTML) -->
     <section id="resume">
       <div class="container">
-        <h2 class="reveal">Resume</h2>
-        <div class="resume reveal" aria-label="Printable resume">
+        <h2>Resume</h2>
+        <div class="resume" aria-label="Printable resume">
           <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
             <div>
               <h1 style="margin:0 0 6px 0;font-size:1.8rem">Dhanush Dabbiru</h1>
@@ -349,7 +284,7 @@
           </div>
 
           <h3>Summary</h3>
-          <p class="muted">Senior Generative AI Engineer building production LLM tool‑calling systems, RAG and persistent memory, multimodal video AI, real‑time voice AI, and cloud‑native applications across web, iOS, Android, and Smart TV. Experienced across AI architecture, model orchestration, vector retrieval, backend APIs, computer vision, real‑time speech, and production AWS deployment.</p>
+          <p class="muted">Senior Generative AI Engineer building production LLM tool-calling systems, RAG and persistent memory, multimodal video AI, real-time voice AI, and cloud-native applications across web, iOS, Android, and Smart TV. Experience across AI architecture, model orchestration, vector retrieval, backend APIs, computer vision, real-time speech, and production AWS deployment.</p>
 
           <h3>Experience</h3>
           <div class="item">
@@ -358,8 +293,8 @@
               <div>
                 <div><em>AreaProbe Inc. — Washington, DC</em> · Sep 2024 — Present</div>
                 <ul class="list">
-                  <li>Architected SpeakCanary, a multimodal video‑intelligence platform processing 8–12 concurrent camera streams with near‑real‑time motion, person/custom‑object, and facial‑recognition detection, generating alerts in ~2–3 seconds.</li>
-                  <li>Built the computer‑vision pipeline: OpenCV motion detection, YOLOv12n for person detection, YOLOE for custom detection, and InsightFace for facial recognition.</li>
+                  <li>Architected SpeakCanary, a multimodal video-intelligence platform processing 8–12 concurrent camera streams with near-real-time motion, person/custom-object, and facial-recognition detection, generating alerts in ~2–3 seconds.</li>
+                  <li>Built the computer-vision pipeline: OpenCV motion detection, YOLOv12n for person detection, YOLOE for custom detection, and InsightFace for facial recognition.</li>
                   <li>Built multimodal RAG with S3 frame storage, Amazon Nova multimodal embeddings, Pinecone, AWS Bedrock, LLaMA 4 Scout, LangGraph, and FastAPI, indexing and searching 10K+ video frames/images with retrieval under 1 second; deployed across EC2/ECS and edge workers.</li>
                   <li>Shipped web, iOS/Android, and Samsung Tizen / LG webOS TV apps; also built Ribbon AI services, Ribbon Images iOS, and Anacostia (Flask, MySQL, SQLAlchemy, OpenAI).</li>
                 </ul>
@@ -372,20 +307,20 @@
               <div>
                 <div><em>ClarityPath AI — Remote</em> · Apr 2026 — Present</div>
                 <ul class="list">
-                  <li>Building Clarity Sidekick with LangGraph model/tool loops, AWS Bedrock, and Gemini: parallel tool execution, streamed responses, knowledge retrieval, and memory‑aware conversations.</li>
-                  <li>Designed an 11‑type durable‑memory architecture with 9‑source per‑turn context assembly across DynamoDB, PostgreSQL, Pinecone + S3, and Redis; rolling summaries and memory caching cut repeated context/token usage by ~30–40%, with a 3‑tier deduplication pipeline for memory writes.</li>
-                  <li>Built real‑time voice services with Deepgram Nova‑3, Cartesia Sonic‑3.5, WebSockets/SSE, and FastAPI at ~1.5–2.5 s end‑to‑end response latency, with React/TypeScript and Flutter iOS/Android clients.</li>
+                  <li>Building Clarity Sidekick with LangGraph model/tool loops, AWS Bedrock, and Gemini: parallel tool execution, streamed responses, knowledge retrieval, and memory-aware conversations.</li>
+                  <li>Designed an 11-type durable-memory architecture with 9-source per-turn context assembly across DynamoDB, PostgreSQL, Pinecone + S3, and Redis; rolling summaries and memory caching cut repeated context/token usage by ~30–40%, with a 3-tier deduplication pipeline for memory writes.</li>
+                  <li>Built real-time voice services with Deepgram Nova-3, Cartesia Sonic-3.5, WebSockets/SSE, and FastAPI at ~1.5–2.5 s end-to-end response latency, with React/TypeScript and Flutter iOS/Android clients.</li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="item">
             <div class="row">
-              <strong>AI / Full‑Stack Engineer</strong>
+              <strong>AI / Full-Stack Engineer</strong>
               <div>
                 <div><em>AfterBuy — Remote</em> · 2026 — Present</div>
                 <ul class="list">
-                  <li>Building AfterBuy, an AI receipt‑management platform that turns receipt photos into searchable purchase records and spending insights (monthly spend, merchants, returns, warranties, purchase history).</li>
+                  <li>Building AfterBuy, an AI receipt-management platform that turns receipt photos into searchable purchase records and spending insights (monthly spend, merchants, returns, warranties, purchase history).</li>
                   <li>Built receipt understanding and Q&amp;A with AWS Bedrock + LLaMA 4 Scout and FastAPI, processing 1K+ receipt images at ~90–95% extraction accuracy for common fields; shipped the Flutter iOS/Android app.</li>
                 </ul>
               </div>
@@ -398,7 +333,7 @@
                 <div><em>xDial — Remote</em> · Aug 2026 — Present</div>
                 <ul class="list">
                   <li>Building healthcare voice/IVR infrastructure with C, WebSockets, WebAssembly, NVIDIA Parakeet / Nemotron, Twilio, Medplum, and PostgreSQL.</li>
-                  <li>Developed AWS infrastructure (EC2 GPU workers, S3, KMS, SSM, private networking, Terraform) for secure speech and call‑processing workloads.</li>
+                  <li>Developed AWS infrastructure (EC2 GPU workers, S3, KMS, SSM, private networking, Terraform) for secure speech and call-processing workloads.</li>
                 </ul>
               </div>
             </div>
@@ -409,8 +344,8 @@
               <div>
                 <div><em>Quarterlife — Remote</em> · Aug 2026 — Present</div>
                 <ul class="list">
-                  <li>Building an AI‑assisted financial platform with Claude, LangGraph, structured tool calls, Plaid, FastAPI, and PostgreSQL/Supabase.</li>
-                  <li>Developed financial scoring and scenario‑testing engines plus React/TypeScript and Flutter iOS/Android apps, with safeguards for AI‑generated financial outputs.</li>
+                  <li>Building an AI-assisted financial platform with Claude, LangGraph, structured tool calls, Plaid, FastAPI, and PostgreSQL/Supabase.</li>
+                  <li>Developed financial scoring and scenario-testing engines plus React/TypeScript and Flutter iOS/Android apps, with safeguards for AI-generated financial outputs.</li>
                 </ul>
               </div>
             </div>
@@ -421,7 +356,7 @@
               <div>
                 <div><em>Kairos — Remote</em> · Jun 2025 — Jan 2026</div>
                 <ul class="list">
-                  <li>Built a real‑time AI voice assistant using Deepgram STT/TTS, WebSockets, xAI Grok, Python, and Flask, with Google Calendar, SendGrid, and SerpAPI integrations.</li>
+                  <li>Built a real-time AI voice assistant using Deepgram STT/TTS, WebSockets, xAI Grok, Python, and Flask, with Google Calendar, SendGrid, and SerpAPI integrations.</li>
                 </ul>
               </div>
             </div>
@@ -449,7 +384,7 @@
             </div>
             <div class="row">
               <strong>RAG / Vision / Voice</strong>
-              <div>Pinecone, pgvector, DynamoDB, PostgreSQL, Redis, Multimodal RAG, OpenCV, Motion Detection, YOLOv12n, YOLOE, InsightFace, Deepgram Nova‑3, Cartesia Sonic‑3.5, Twilio / Telnyx</div>
+              <div>Pinecone, pgvector, DynamoDB, PostgreSQL, Redis, Multimodal RAG, OpenCV, Motion Detection, YOLOv12n, YOLOE, InsightFace, Deepgram Nova-3, Cartesia Sonic-3.5, Twilio / Telnyx</div>
             </div>
             <div class="row">
               <strong>Engineering / Cloud</strong>
@@ -461,40 +396,39 @@
           <div class="item">
             <div class="row">
               <strong>Savoas — AI Voice Agent</strong>
-              <div>Real‑time salon voice assistant using LangGraph model/tool loops, Groq GPT‑OSS, FastAPI, Twilio/Telnyx, Pinecone, and Redis; integrated 20+ booking and business‑action tools for service lookup, availability, appointments, calendar operations, payments, and customer Q&amp;A. <a href="https://voice-agents-frontend-60vy.onrender.com/" target="_blank" rel="noopener">Link</a></div>
+              <div>Real-time salon voice assistant using LangGraph model/tool loops, Groq GPT-OSS, FastAPI, Twilio/Telnyx, Pinecone, and Redis; integrated 20+ booking and business-action tools for service lookup, availability, appointments, calendar operations, payments, and customer Q&amp;A. <a href="https://voice-agents-frontend-60vy.onrender.com/" target="_blank" rel="noopener">Link</a></div>
             </div>
           </div>
 
-          <h3>Certifications & Publications</h3>
+          <h3>Certifications &amp; Publications</h3>
           <div class="item">
             <div class="row">
               <strong>Certifications</strong>
-              <div><a href="https://www.credly.com/badges/1a747770-697a-42f7-af5d-39d3bb3c0480/public_url" target="_blank" rel="noopener">AWS Certified AI Practitioner (AIF‑C02)</a>; <a href="https://www.credly.com/badges/5cfcfb20-24ce-49c8-8b9b-c0b08524aa53/public_url" target="_blank" rel="noopener">AWS Certified Cloud Practitioner (CLF‑C02)</a>; <a href="https://learn.microsoft.com/en-in/users/kasiviswanadhdhanushdabbiru-3965/credentials/184a0375f5b493f6" target="_blank" rel="noopener">Microsoft Azure AI‑900</a></div>
+              <div><a href="https://www.credly.com/badges/1a747770-697a-42f7-af5d-39d3bb3c0480/public_url" target="_blank" rel="noopener">AWS Certified AI Practitioner (AIF-C02)</a>; <a href="https://www.credly.com/badges/5cfcfb20-24ce-49c8-8b9b-c0b08524aa53/public_url" target="_blank" rel="noopener">AWS Certified Cloud Practitioner (CLF-C02)</a>; <a href="https://learn.microsoft.com/en-in/users/kasiviswanadhdhanushdabbiru-3965/credentials/184a0375f5b493f6" target="_blank" rel="noopener">Microsoft Azure AI-900</a></div>
             </div>
             <div class="row">
               <strong>Publications</strong>
-              <div><a href="https://ieeexplore.ieee.org/document/10760944" target="_blank" rel="noopener">“IoT Enabled Aqua Pond Monitoring System” (IEEE)</a>; <a href="https://link.springer.com/chapter/10.1007/978-3-031-51167-7_62" target="_blank" rel="noopener">“Semi‑Automated Vehicle Control Using Wi‑Fi” (Springer)</a></div>
+              <div><a href="https://ieeexplore.ieee.org/document/10760944" target="_blank" rel="noopener">“IoT Enabled Aqua Pond Monitoring System” (IEEE)</a>; <a href="https://link.springer.com/chapter/10.1007/978-3-031-51167-7_62" target="_blank" rel="noopener">“Semi-Automated Vehicle Control Using Wi-Fi” (Springer)</a></div>
             </div>
           </div>
 
           <div class="print-actions">
             <a class="btn" href="Dhanush-Dabbiru-Resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-            <button class="btn" onclick="window.print()">Print this resume</button>
+            <button class="btn" type="button" onclick="window.print()">Print this resume</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
       <div class="container">
-        <h2 class="reveal">Contact</h2>
-        <p class="muted reveal" style="margin-top:8px">Open to Senior Generative AI Engineer roles — email or call and I’ll reply quickly.</p>
+        <h2>Contact</h2>
+        <p class="muted" style="margin-top:8px">Open to Senior Generative AI Engineer roles. Email or call anytime.</p>
         <div class="grid two" style="margin-top:16px">
-          <div class="card reveal"><strong>Email</strong><div><a href="mailto:kasiviswanadhdhanushdabbiru@gmail.com" class="muted">kasiviswanadhdhanushdabbiru@gmail.com</a></div></div>
-          <div class="card reveal"><strong>Phone</strong><div><a href="tel:+17036263800" class="muted">(703) 626-3800</a></div></div>
-          <div class="card reveal"><strong>Location</strong><div class="muted">Fairfax, VA</div></div>
-          <div class="card reveal"><strong>Availability</strong><div class="muted">Available for hire · Fairfax, VA / remote</div></div>
+          <div class="card"><strong>Email</strong><div><a href="mailto:kasiviswanadhdhanushdabbiru@gmail.com" class="muted">kasiviswanadhdhanushdabbiru@gmail.com</a></div></div>
+          <div class="card"><strong>Phone</strong><div><a href="tel:+17036263800" class="muted">(703) 626-3800</a></div></div>
+          <div class="card"><strong>Location</strong><div class="muted">Fairfax, VA</div></div>
+          <div class="card"><strong>Availability</strong><div class="muted">Available for hire · Fairfax, VA / remote</div></div>
         </div>
         <div class="btn-row" style="margin-top:16px">
           <a class="btn primary" href="mailto:kasiviswanadhdhanushdabbiru@gmail.com">Email me</a>
@@ -509,38 +443,29 @@
 
   <footer>
     <div class="container" style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
-      <div>© <span id="year"></span> Dhanush Dabbiru — All rights reserved.</div>
+      <div>© <span id="year"></span> Dhanush Dabbiru</div>
       <div style="display:flex;gap:14px">
         <a class="muted" href="#about">About</a>
         <a class="muted" href="#projects">Projects</a>
-        <a class="muted" href="#demos">Demo videos</a>
+        <a class="muted" href="#contact">Contact</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // active link state on scroll
     const sections = [...document.querySelectorAll('main section')];
     const navLinks = [...document.querySelectorAll('#nav-links a[href^="#"]')];
     const setActive = () => {
-      const y = window.scrollY + 110; // header offset
+      const y = window.scrollY + 110;
       let current = sections[0]?.id || 'home';
-      for(const s of sections){ if(y >= s.offsetTop) current = s.id; }
+      for (const s of sections) { if (y >= s.offsetTop) current = s.id; }
       navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
     };
-    window.addEventListener('scroll', setActive, { passive:true });
+    window.addEventListener('scroll', setActive, { passive: true });
     setActive();
 
-    // reveal on scroll
-    const io = new IntersectionObserver((entries)=>{
-      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }
-    }, { threshold:.12, rootMargin:'0px 0px -80px 0px' });
-    document.querySelectorAll('.reveal, .card').forEach(el => io.observe(el));
-
-    // mobile nav
     const toggle = document.getElementById('nav-toggle');
     const links = document.getElementById('nav-links');
     const closeNav = () => {
