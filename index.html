@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dhanush Dabbiru · Portfolio</title>
   <meta name="description" content="Portfolio and resume of Dhanush Dabbiru — Senior Generative AI Engineer: LLM orchestration, multimodal AI, RAG, voice AI, and computer vision." />
+  <link rel="canonical" href="https://dkvd648.github.io/portfolio/" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.png" type="image/png" sizes="64x64" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Dhanush Dabbiru" />
+  <meta property="og:title" content="Dhanush Dabbiru · Senior Generative AI Engineer" />
+  <meta property="og:description" content="Senior Generative AI Engineer building LLM orchestration, multimodal RAG, real-time voice AI, and computer vision systems." />
+  <meta property="og:url" content="https://dkvd648.github.io/portfolio/" />
+  <meta property="og:image" content="https://dkvd648.github.io/portfolio/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dhanush Dabbiru · Senior Generative AI Engineer" />
+  <meta name="twitter:description" content="Senior Generative AI Engineer building LLM orchestration, multimodal RAG, real-time voice AI, and computer vision systems." />
+  <meta name="twitter:image" content="https://dkvd648.github.io/portfolio/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -81,25 +98,46 @@
     .floaty{animation:floaty 6s ease-in-out infinite}
 
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}.floaty{animation:none}}
+
+    /* Mobile nav */
+    .nav-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#121212;color:#fff;cursor:pointer}
+    .nav-toggle:focus-visible,.links a:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .nav-toggle-bars{display:block;width:18px;height:2px;background:#fff;position:relative}
+    .nav-toggle-bars::before,.nav-toggle-bars::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff}
+    .nav-toggle-bars::before{top:-6px}
+    .nav-toggle-bars::after{top:6px}
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{position:fixed;left:12px;top:12px;z-index:100;width:auto;height:auto;padding:10px 14px;background:#fff;color:#000;border-radius:10px}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    @media (max-width:900px){
+      .nav-toggle{display:inline-flex}
+      .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:4px;padding:12px 16px 16px;background:rgba(0,0,0,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+      .links.open{display:flex}
+      .links a{padding:12px 14px}
+      nav{position:relative}
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#home">Skip to content</a>
   <header>
-    <nav class="container">
+    <nav class="container" aria-label="Primary">
       <a class="brand" href="#home" aria-label="Go to top">
         <img src="me.jpg" alt="Portrait of Dhanush" />
         <span>Dhanush Dabbiru</span>
       </a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Open menu">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
       <div class="links" id="nav-links">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
-
         <a href="#projects">Projects</a>
-        <a href="#demos">Resi Samples</a>
+        <a href="#demos">Demo videos</a>
         <a href="#achievements">Achievements</a>
         <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
-        <a class="btn primary" href="My Resume.pdf" target="_blank" rel="noopener">Resume PDF</a>
+        <a class="btn primary" href="Dhanush-Dabbiru-Resume.pdf" target="_blank" rel="noopener">Resume PDF</a>
       </div>
     </nav>
   </header>
@@ -210,40 +248,71 @@
             <div class="muted">ClarityPath AI</div>
             <p class="muted">LangGraph model/tool loops on AWS Bedrock and Gemini with parallel tool execution, streamed responses, knowledge retrieval, and memory‑aware conversations; real‑time voice with ~1.5–2.5 s end‑to‑end response latency.</p>
             <div class="badges"><span class="badge">LangGraph</span><span class="badge">AWS Bedrock</span><span class="badge">Gemini</span><span class="badge">Deepgram Nova‑3</span><span class="badge">Cartesia Sonic‑3.5</span></div>
-            <p><a class="btn" href="https://app.claritysidekick.com/" target="_blank" rel="noopener">Visit</a></p>
+            <div class="btn-row">
+              <a class="btn" href="https://claritysidekick.com/" target="_blank" rel="noopener">Visit site</a>
+              <a class="btn" href="https://app.claritysidekick.com/" target="_blank" rel="noopener">Open app</a>
+            </div>
           </div>
           <div class="card reveal">
             <h3>AfterBuy</h3>
             <div class="muted">AI receipt management</div>
             <p class="muted">Converts receipt photos into searchable purchase records and spending insights; receipt understanding and Q&amp;A with AWS Bedrock + LLaMA 4 Scout, processing 1K+ receipt images at ~90–95% extraction accuracy for common fields; Flutter app for iOS and Android.</p>
             <div class="badges"><span class="badge">AWS Bedrock</span><span class="badge">LLaMA 4 Scout</span><span class="badge">FastAPI</span><span class="badge">Flutter</span></div>
-            <p><a class="btn" href="https://afterbuy.ai/" target="_blank" rel="noopener">Visit</a></p>
+            <div class="btn-row">
+              <a class="btn" href="https://afterbuy.ai/" target="_blank" rel="noopener">Visit</a>
+              <a class="btn" href="https://apps.apple.com/us/app/smart-receipts-afterbuy/id6759800812" target="_blank" rel="noopener">App Store</a>
+              <a class="btn" href="https://play.google.com/store/apps/details?id=com.receiptlyai.billo" target="_blank" rel="noopener">Google Play</a>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h3>xDial</h3>
+            <div class="muted">Healthcare voice / IVR</div>
+            <p class="muted">Healthcare voice/IVR infrastructure with C, WebSockets, WebAssembly, NVIDIA Parakeet / Nemotron, Twilio, Medplum, and PostgreSQL; AWS infrastructure (EC2 GPU workers, S3, KMS, SSM, private networking, Terraform) for secure speech and call‑processing workloads.</p>
+            <div class="badges"><span class="badge">C</span><span class="badge">WebSockets</span><span class="badge">WebAssembly</span><span class="badge">NVIDIA Parakeet / Nemotron</span><span class="badge">Twilio</span><span class="badge">Medplum</span><span class="badge">PostgreSQL</span><span class="badge">Terraform</span></div>
+            <div class="btn-row"><a class="btn" href="https://xdialai.ai/" target="_blank" rel="noopener">Visit</a></div>
+          </div>
+          <div class="card reveal">
+            <h3>Quarterlife</h3>
+            <div class="muted">AI‑assisted financial platform</div>
+            <p class="muted">AI‑assisted financial platform with Claude, LangGraph, structured tool calls, Plaid, FastAPI, and PostgreSQL/Supabase; financial scoring and scenario‑testing engines plus React/TypeScript and Flutter iOS/Android apps, with safeguards for AI‑generated financial outputs.</p>
+            <div class="badges"><span class="badge">Claude</span><span class="badge">LangGraph</span><span class="badge">Plaid</span><span class="badge">FastAPI</span><span class="badge">PostgreSQL / Supabase</span><span class="badge">React</span><span class="badge">Flutter</span></div>
+            <div class="btn-row"><a class="btn" href="https://www.quarterlife.io/" target="_blank" rel="noopener">Visit</a></div>
+          </div>
+          <div class="card reveal">
+            <h3>Ribbon Images</h3>
+            <div class="muted">AreaProbe Inc. · Ribbon AI services</div>
+            <p class="muted">Ribbon AI services and Ribbon Images iOS, built alongside SpeakCanary and other AreaProbe products.</p>
+            <div class="badges"><span class="badge">iOS</span><span class="badge">Ribbon AI</span></div>
+            <div class="btn-row">
+              <a class="btn" href="https://ribbondata.com/" target="_blank" rel="noopener">Visit</a>
+              <a class="btn" href="https://apps.apple.com/us/app/ribbon-images/id6763367166" target="_blank" rel="noopener">App Store</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Resi Video Samples -->
+    <!-- Demo videos -->
     <section id="demos">
       <div class="container">
-        <h2 class="reveal">Resi Samples</h2>
-
+        <h2 class="reveal">Demo videos</h2>
+        <p class="muted reveal" style="margin-top:8px">Computer‑vision / video‑AI product demos. Individual clips are labeled generically because the source files are not mapped to a specific product name in the repo.</p>
         <div class="video-grid" style="margin-top:16px">
           <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-1.mp4"></video>
-            <div class="video-meta"><span>sample-1.mp4</span><a class="btn" href="sample-1.mp4" download>Download</a></div>
+            <video controls preload="metadata" src="sample-1.mp4" title="Product demo 1"></video>
+            <div class="video-meta"><span>Product demo 1</span><a class="btn" href="sample-1.mp4" download>Download</a></div>
           </div>
           <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-2.mp4"></video>
-            <div class="video-meta"><span>sample-2.mp4</span><a class="btn" href="sample-2.mp4" download>Download</a></div>
+            <video controls preload="metadata" src="sample-2.mp4" title="Product demo 2"></video>
+            <div class="video-meta"><span>Product demo 2</span><a class="btn" href="sample-2.mp4" download>Download</a></div>
           </div>
           <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-3.mp4"></video>
-            <div class="video-meta"><span>sample-3.mp4</span><a class="btn" href="sample-3.mp4" download>Download</a></div>
+            <video controls preload="metadata" src="sample-3.mp4" title="Product demo 3"></video>
+            <div class="video-meta"><span>Product demo 3</span><a class="btn" href="sample-3.mp4" download>Download</a></div>
           </div>
           <div class="video-card reveal">
-            <video controls preload="metadata" src="sample-4.mp4"></video>
-            <div class="video-meta"><span>sample-4.mp4</span><a class="btn" href="sample-4.mp4" download>Download</a></div>
+            <video controls preload="metadata" src="sample-4.mp4" title="Product demo 4"></video>
+            <div class="video-meta"><span>Product demo 4</span><a class="btn" href="sample-4.mp4" download>Download</a></div>
           </div>
         </div>
       </div>
@@ -409,7 +478,7 @@
           </div>
 
           <div class="print-actions">
-            <a class="btn" href="My Resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+            <a class="btn" href="Dhanush-Dabbiru-Resume.pdf" target="_blank" rel="noopener">Open PDF</a>
             <button class="btn" onclick="window.print()">Print this resume</button>
           </div>
         </div>
@@ -420,14 +489,19 @@
     <section id="contact">
       <div class="container">
         <h2 class="reveal">Contact</h2>
+        <p class="muted reveal" style="margin-top:8px">Open to Senior Generative AI Engineer roles — email or call and I’ll reply quickly.</p>
         <div class="grid two" style="margin-top:16px">
           <div class="card reveal"><strong>Email</strong><div><a href="mailto:kasiviswanadhdhanushdabbiru@gmail.com" class="muted">kasiviswanadhdhanushdabbiru@gmail.com</a></div></div>
+          <div class="card reveal"><strong>Phone</strong><div><a href="tel:+17036263800" class="muted">(703) 626-3800</a></div></div>
           <div class="card reveal"><strong>Location</strong><div class="muted">Fairfax, VA</div></div>
+          <div class="card reveal"><strong>Availability</strong><div class="muted">Available for hire · Fairfax, VA / remote</div></div>
         </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <div class="btn-row" style="margin-top:16px">
+          <a class="btn primary" href="mailto:kasiviswanadhdhanushdabbiru@gmail.com">Email me</a>
+          <a class="btn" href="tel:+17036263800">Call me</a>
           <a class="btn" href="https://www.linkedin.com/in/dkvd/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="https://github.com/dkvd648" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn primary" href="My Resume.pdf" target="_blank" rel="noopener">View Resume PDF</a>
+          <a class="btn" href="Dhanush-Dabbiru-Resume.pdf" target="_blank" rel="noopener">View Resume PDF</a>
         </div>
       </div>
     </section>
@@ -439,7 +513,7 @@
       <div style="display:flex;gap:14px">
         <a class="muted" href="#about">About</a>
         <a class="muted" href="#projects">Projects</a>
-        <a class="muted" href="#demos">Resi Samples</a>
+        <a class="muted" href="#demos">Demo videos</a>
       </div>
     </div>
   </footer>
@@ -465,6 +539,26 @@
       for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }
     }, { threshold:.12, rootMargin:'0px 0px -80px 0px' });
     document.querySelectorAll('.reveal, .card').forEach(el => io.observe(el));
+
+    // mobile nav
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    const closeNav = () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    };
+    const openNav = () => {
+      links.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+    };
+    toggle?.addEventListener('click', () => {
+      if (links.classList.contains('open')) closeNav(); else openNav();
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNav(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeNav(); });
   </script>
 </body>
 </html>
